@@ -40,7 +40,7 @@ public class SessionManager {
 
 	/**
 	 * Get a key from session
-	 * @return
+	 * @return key
 	 */
 	public static int getKey() {
 		return (Integer) ActionContext.getContext().getSession().get("key");

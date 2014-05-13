@@ -25,7 +25,7 @@ public class UserDAO extends HibernateDaoSupport {
 	private static final Logger log = LoggerFactory.getLogger(UserDAO.class);
 	// property constants
 	public static final String USERNAME = "username";
-	public static final String PASSWOD = "passwod";
+	public static final String PASSWORD = "password";
 	public static final String SEX = "sex";
 	public static final String PHONE = "phone";
 	public static final String QQ = "qq";
@@ -104,7 +104,7 @@ public class UserDAO extends HibernateDaoSupport {
 	}
 
 	public List<User> findByPasswod(Object passwod) {
-		return findByProperty(PASSWOD, passwod);
+		return findByProperty(PASSWORD, passwod);
 	}
 
 	public List<User> findBySex(Object sex) {

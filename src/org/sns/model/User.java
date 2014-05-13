@@ -24,7 +24,7 @@ public class User implements java.io.Serializable {
 
 	private Integer userId;
 	private String username;
-	private String passwod;
+	private String password;
 	private Short sex;
 	private String phone;
 	private String qq;
@@ -58,7 +58,7 @@ public class User implements java.io.Serializable {
 			Set<Friend> friendsForUserId, Set<Friend> friendsForOtherId,
 			Set<Message> messagesForReceiverId) {
 		this.username = username;
-		this.passwod = passwod;
+		this.password = passwod;
 		this.sex = sex;
 		this.phone = phone;
 		this.qq = qq;
@@ -99,13 +99,13 @@ public class User implements java.io.Serializable {
 		this.username = username;
 	}
 
-	@Column(name = "passwod", length = 45)
+	@Column(name = "password", length = 45)
 	public String getPasswod() {
-		return this.passwod;
+		return this.password;
 	}
 
 	public void setPasswod(String passwod) {
-		this.passwod = passwod;
+		this.password = passwod;
 	}
 
 	@Column(name = "sex")

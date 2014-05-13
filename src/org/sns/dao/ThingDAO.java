@@ -1,14 +1,17 @@
 package org.sns.dao;
 
-import java.sql.Timestamp;
+import java.sql.SQLException;
 import java.util.List;
-import java.util.Set;
 
+import org.hibernate.HibernateException;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sns.model.Thing;
 import org.springframework.context.ApplicationContext;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 /**
@@ -20,7 +23,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
  * of transaction control.
  * 
  * @see org.sns.model.Thing
- * @author MyEclipse Persistence Tools
+ * @author MyEclipse Persistence Tools&BaiQiang
  */
 public class ThingDAO extends HibernateDaoSupport {
 	private static final Logger log = LoggerFactory.getLogger(ThingDAO.class);
@@ -115,7 +118,26 @@ public class ThingDAO extends HibernateDaoSupport {
 	public List<Thing> findByType(Object type) {
 		return findByProperty(TYPE, type);
 	}
-
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public List findPart(final int start, final int size) {
+		log.debug("finding part Friend instances");
+		try {
+			final String queryString = "from Thing";
+			return this.getHibernateTemplate().execute(new HibernateCallback() {
+				public List doInHibernate(Session session)
+						throws HibernateException, SQLException {
+					Query query = session.createQuery(queryString);
+					query.setFirstResult(start);
+					query.setMaxResults(size);
+					return query.list();
+				}
+			});
+		} catch (RuntimeException re) {
+			throw re;
+		}
+	}
+	
 	public List findAll() {
 		log.debug("finding all Thing instances");
 		try {

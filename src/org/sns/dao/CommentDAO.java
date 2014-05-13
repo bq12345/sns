@@ -1,6 +1,5 @@
 package org.sns.dao;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.hibernate.LockMode;

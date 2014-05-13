@@ -34,4 +34,8 @@ update Service层
 
 引入Struts2包 同步到Github上面
 
+增加一些分页需要的DAO接口 也可以在Service 使用DAO将数据全部取出放在内存 再分段取 但是时效性不高
+
+
+
 
