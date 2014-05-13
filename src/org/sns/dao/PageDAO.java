@@ -57,7 +57,7 @@ public class PageDAO extends HibernateDaoSupport {
 		log.debug("getting Page instance with id: " + id);
 		try {
 			Page instance = (Page) getHibernateTemplate().get(
-					"org.bq.dao.Page", id);
+					"org.sns.model.Page", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);

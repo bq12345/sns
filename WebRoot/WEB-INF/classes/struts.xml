@@ -1,5 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.i18n.encoding" value="utf-8" />
+	<package name="default"  namespace="/"  extends="struts-default">
 
+		<default-action-ref name="index" />
+
+		<global-results>
+			<result name="error">/error.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="error" />
+		</global-exception-mappings>
+
+		<action name="index">
+			<result>/index.jsp</result>
+		</action>
+
+		<action name="#">
+			<result>/index.jsp</result>
+		</action>
+		
+		<action name="addUser" class="org.sns.action.UserAction" >
+			<result name="success">/success.jsp</result>
+			<result name="error">/error.jsp</result>
+			<interceptor-ref name="fileUpload">
+                <param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg</param>
+                <param name="maximumSize">1025956</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+		</action>
+		
+		<action name="getImage" class="org.sns.action.ImageAction" >
+			<result name="success" type="stream">
+				<param name="contentType">image/png</param>
+				<param name="bufferSize">4096</param>
+				<param name="inputName">image</param>  
+			</result>
+			<result name="error">/error.jsp</result>
+		</action>
+	</package>
 </struts>    

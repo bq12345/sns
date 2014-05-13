@@ -24,7 +24,7 @@ public class UserDAOTest {
 		UserDAO dao = UserDAO.getFromApplicationContext(ctx);
 		User user = new User();
 		user.setUsername("bq");
-		user.setPasswod("00000");
+		user.setPassword("00000");
 		user.setPhone("18740414439");
 		user.setAble((short) 0);
 		user.setEmail("bq@bq.com");

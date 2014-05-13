@@ -21,14 +21,14 @@
 		</property>
 		<property name="show_sql">true</property>
 
-		<mapping class="org.sns.dao.Wait" />
-		<mapping class="org.sns.dao.Comment" />
-		<mapping class="org.sns.dao.Thing" />
-		<mapping class="org.sns.dao.Mark" />
-		<mapping class="org.sns.dao.Friend" />
-		<mapping class="org.sns.dao.Page" />
-		<mapping class="org.sns.dao.User" />
-		<mapping class="org.sns.dao.Message" />
+		<mapping class="org.sns.model.Wait" />
+		<mapping class="org.sns.model.Comment" />
+		<mapping class="org.sns.model.Thing" />
+		<mapping class="org.sns.model.Mark" />
+		<mapping class="org.sns.model.Friend" />
+		<mapping class="org.sns.model.Page" />
+		<mapping class="org.sns.model.User" />
+		<mapping class="org.sns.model.Message" />
 
 	</session-factory>
 

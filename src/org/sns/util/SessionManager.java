@@ -4,6 +4,10 @@ import org.sns.model.User;
 
 import com.opensymphony.xwork2.ActionContext;
 
+/**
+ * @author BaiQiang
+ * @version 1.0
+ */
 public class SessionManager {
 	/**
 	 * If a user is login

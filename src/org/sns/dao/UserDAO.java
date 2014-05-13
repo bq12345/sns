@@ -1,7 +1,6 @@
 package org.sns.dao;
 
 import java.util.List;
-import java.util.Set;
 
 import org.hibernate.LockMode;
 import org.slf4j.Logger;
@@ -64,7 +63,7 @@ public class UserDAO extends HibernateDaoSupport {
 		log.debug("getting User instance with id: " + id);
 		try {
 			User instance = (User) getHibernateTemplate().get(
-					"org.bq.dao.User", id);
+					"org.sns.model.User", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);

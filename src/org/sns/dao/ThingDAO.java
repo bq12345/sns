@@ -64,7 +64,7 @@ public class ThingDAO extends HibernateDaoSupport {
 		log.debug("getting Thing instance with id: " + id);
 		try {
 			Thing instance = (Thing) getHibernateTemplate().get(
-					"org.bq.dao.Thing", id);
+					"org.sns.model.Thing", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);

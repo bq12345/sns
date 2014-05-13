@@ -55,7 +55,7 @@ public class CommentDAO extends HibernateDaoSupport {
 		log.debug("getting Comment instance with id: " + id);
 		try {
 			Comment instance = (Comment) getHibernateTemplate().get(
-					"org.bq.dao.Comment", id);
+					"org.sns.model.Comment", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);

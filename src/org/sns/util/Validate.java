@@ -3,6 +3,10 @@ package org.sns.util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @author BaiQiang
+ * @version 1.0
+ */
 public class Validate {
 	public static boolean isEmail(String email) {
 		if (null == email || "".equals(email))

@@ -55,7 +55,7 @@ public class WaitDAO extends HibernateDaoSupport {
 		log.debug("getting Wait instance with id: " + id);
 		try {
 			Wait instance = (Wait) getHibernateTemplate().get(
-					"org.bq.dao.Wait", id);
+					"org.sns.model.Wait", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);

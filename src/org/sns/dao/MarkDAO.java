@@ -55,7 +55,7 @@ public class MarkDAO extends HibernateDaoSupport {
 		log.debug("getting Mark instance with id: " + id);
 		try {
 			Mark instance = (Mark) getHibernateTemplate().get(
-					"org.bq.dao.Mark", id);
+					"org.sns.model.Mark", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);

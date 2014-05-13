@@ -50,7 +50,7 @@ public class User implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public User(String username, String passwod, Short sex, String phone,
+	public User(String username, String password, Short sex, String phone,
 			String qq, String email, Short able, Short state, Blob image,
 			Set<Wait> waitsForSenderId, Set<Comment> comments, Set<Page> pages,
 			Set<Message> messagesForSenderId, Set<Thing> things,
@@ -58,7 +58,7 @@ public class User implements java.io.Serializable {
 			Set<Friend> friendsForUserId, Set<Friend> friendsForOtherId,
 			Set<Message> messagesForReceiverId) {
 		this.username = username;
-		this.password = passwod;
+		this.password = password;
 		this.sex = sex;
 		this.phone = phone;
 		this.qq = qq;
@@ -100,12 +100,12 @@ public class User implements java.io.Serializable {
 	}
 
 	@Column(name = "password", length = 45)
-	public String getPasswod() {
+	public String getPassword() {
 		return this.password;
 	}
 
-	public void setPasswod(String passwod) {
-		this.password = passwod;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Column(name = "sex")

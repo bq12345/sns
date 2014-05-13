@@ -60,7 +60,7 @@ public class FriendDAO extends HibernateDaoSupport {
 		log.debug("getting Friend instance with id: " + id);
 		try {
 			Friend instance = (Friend) getHibernateTemplate().get(
-					"org.bq.dao.Friend", id);
+					"org.sns.model.Friend", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
