@@ -42,7 +42,13 @@ public class Message implements java.io.Serializable {
 		this.time = time;
 		this.read = read;
 	}
-
+	public Message(User userBySenderId, User userByReceiverId, String content,
+			Timestamp time) {
+		this.userBySenderId = userBySenderId;
+		this.userByReceiverId = userByReceiverId;
+		this.content = content;
+		this.time = time;
+	}
 	// Property accessors
 	@Id
 	@GeneratedValue
@@ -93,7 +99,7 @@ public class Message implements java.io.Serializable {
 		this.time = time;
 	}
 
-	@Column(name = "read")
+	@Column(name = "has_read")
 	public Short getRead() {
 		return this.read;
 	}

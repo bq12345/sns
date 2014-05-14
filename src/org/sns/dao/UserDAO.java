@@ -180,6 +180,6 @@ public class UserDAO extends HibernateDaoSupport {
 	}
 
 	public static UserDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (UserDAO) ctx.getBean("UserDAO");
+		return (UserDAO) ctx.getBean("userDAO");
 	}
 }

@@ -147,6 +147,6 @@ public class MessageDAO extends HibernateDaoSupport {
 	}
 
 	public static MessageDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (MessageDAO) ctx.getBean("MessageDAO");
+		return (MessageDAO) ctx.getBean("messageDAO");
 	}
 }

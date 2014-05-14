@@ -168,6 +168,6 @@ public class FriendDAO extends HibernateDaoSupport {
 	}
 
 	public static FriendDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (FriendDAO) ctx.getBean("FriendDAO");
+		return (FriendDAO) ctx.getBean("friendDAO");
 	}
 }

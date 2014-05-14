@@ -26,7 +26,7 @@ public class MessageDAOTest {
 		String date = sdf.format(new Date());
 		User u=userDao.findById(1);
 		User to=userDao.findById(2);
-		Message  message=new Message(u, to, "这是�?��消息", Timestamp.valueOf(date),(short)0);
+		Message  message=new Message(u, to, "这是一个测试", Timestamp.valueOf(date),(short)0);
 		dao.save(message);
 		System.out.println("saved");
 		System.out.println("id: " + message.getMsgId());
@@ -38,7 +38,8 @@ public class MessageDAOTest {
 				"applicationContext.xml");
 		MessageDAO dao = MessageDAO.getFromApplicationContext(ctx);
 		Message message=new Message();
-		List list = dao.findAll();
+		message.setRead((short)0);
+		List list = dao.findByExample(message);
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println(((Message) list.get(i)).getContent());
 		}

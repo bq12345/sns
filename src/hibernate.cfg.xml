@@ -8,7 +8,7 @@
 	<session-factory>
 		<property name="myeclipse.connection.profile">MySQL</property>
 		<property name="connection.url">
-			jdbc:mysql://localhost:3306/sns
+			jdbc:mysql://localhost:3306/sns?useUnicode=true&amp;characterEncoding=UTF-8
 		</property>
 		<property name="connection.username">root</property>
 		<property name="connection.password">271234</property>

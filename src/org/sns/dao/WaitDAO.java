@@ -136,6 +136,6 @@ public class WaitDAO extends HibernateDaoSupport {
 	}
 
 	public static WaitDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (WaitDAO) ctx.getBean("WaitDAO");
+		return (WaitDAO) ctx.getBean("waitDAO");
 	}
 }

@@ -185,6 +185,6 @@ public class ThingDAO extends HibernateDaoSupport {
 	}
 
 	public static ThingDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (ThingDAO) ctx.getBean("ThingDAO");
+		return (ThingDAO) ctx.getBean("thingDAO");
 	}
 }

@@ -141,6 +141,6 @@ public class CommentDAO extends HibernateDaoSupport {
 	}
 
 	public static CommentDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (CommentDAO) ctx.getBean("CommentDAO");
+		return (CommentDAO) ctx.getBean("commentDAO");
 	}
 }

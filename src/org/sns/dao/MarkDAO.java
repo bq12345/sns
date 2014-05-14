@@ -136,6 +136,6 @@ public class MarkDAO extends HibernateDaoSupport {
 	}
 
 	public static MarkDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (MarkDAO) ctx.getBean("MarkDAO");
+		return (MarkDAO) ctx.getBean("markDAO");
 	}
 }

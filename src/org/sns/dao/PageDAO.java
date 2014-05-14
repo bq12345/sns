@@ -146,6 +146,6 @@ public class PageDAO extends HibernateDaoSupport {
 	}
 
 	public static PageDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (PageDAO) ctx.getBean("PageDAO");
+		return (PageDAO) ctx.getBean("pageDAO");
 	}
 }
