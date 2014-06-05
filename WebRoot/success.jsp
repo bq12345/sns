@@ -15,6 +15,7 @@
 <body>
 	跳转到成功页面
 	<br>
+	<img src="getImage?id=1">
 	<s:debug></s:debug>
 </body>
 </html>

@@ -34,7 +34,7 @@ public class Thing implements java.io.Serializable,Comparable<Thing> {
 	private Blob image;
 	private Short type;
 	private Set<Comment> comments = new HashSet<Comment>(0);
-
+	private String sender;
 	// Constructors
 
 	/** default constructor */
@@ -66,7 +66,7 @@ public class Thing implements java.io.Serializable,Comparable<Thing> {
 		this.thingId = thingId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "send_id")
 	public User getUser() {
 		return this.user;
@@ -130,7 +130,7 @@ public class Thing implements java.io.Serializable,Comparable<Thing> {
 		this.type = type;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "thing")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "thing")
 	public Set<Comment> getComments() {
 		return this.comments;
 	}
@@ -143,5 +143,22 @@ public class Thing implements java.io.Serializable,Comparable<Thing> {
 	public int compareTo(Thing t) {
 		return (int)(this.getTime().getTime()-t.getTime().getTime());
 	}
+
+	@Override
+	public String toString() {
+		return "Thing [thingId=" + thingId + ", user=" + user + ", content="
+				+ content + ", time=" + time + ", commentNum=" + commentNum
+				+ ", shareNum=" + shareNum + ", image=" + image + ", type="
+				+ type + ", comments=" + comments + "]";
+	}
+	
+	public String getSender() {
+		return sender;
+	}
+
+	public void setSender(String sender) {
+		this.sender = sender;
+	}
+	
 
 }

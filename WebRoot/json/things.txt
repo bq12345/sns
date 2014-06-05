@@ -1,0 +1,6 @@
+[{"id":1,"sender":"BaiQiang","content":"Hello","time":"2014-5-24 9:00","image":"images/1.jpg","comment_num":3},
+{"id":2,"sender":"BaiQiang","content":"Hello","time":"2014-5-24 9:00","image":"images/1.jpg","comment_num":3},
+{"id":3,"sender":"BaiQiang","content":"Hello","time":"2014-5-24 9:00","image":"images/1.jpg","comment_num":3},
+{"id":4,"sender":"BaiQiang","content":"Hello","time":"2014-5-24 9:00","image":"images/1.jpg","comment_num":3},
+{"id":5,"sender":"BaiQiang","content":"Hello","time":"2014-5-24 9:00","image":"images/1.jpg","comment_num":3}
+]

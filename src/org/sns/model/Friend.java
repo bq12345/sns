@@ -46,7 +46,7 @@ public class Friend implements java.io.Serializable {
 		this.friendId = friendId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
 	public User getUserByUserId() {
 		return this.userByUserId;
@@ -56,7 +56,7 @@ public class Friend implements java.io.Serializable {
 		this.userByUserId = userByUserId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "other_id")
 	public User getUserByOtherId() {
 		return this.userByOtherId;

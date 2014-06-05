@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>blog</title>
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script src="dist/js/jquery-1.11.1.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+ 
+    <style type="text/css">
+        .solidpic{
+           border:1px;
+	       width:100px;
+	       height:80px;
+	       overflow:hidden;
+        }
+        .solidpic img{
+	       max-width:80px;/*
+	       _width:expression(this.width>80?"80px":this.width);*/
+        }
+        
+        .change >li>a{
+            opacity:0.7;
+           -moz-transition:background-color:yellow 1s;
+           -webkit-transition:background-color:yellow 1s;
+           -o-transition:background-color:yellow 1s;
+        }
+        .change >li>a:hover{
+          background-color:yellow;
+        }
+        
+    </style>
+  </head>
+  <body>
+      
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background-color:#8DEEEE;">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-3"><img src="images/logo.jpg"></div>
+            <div class="col-md-6">
+              <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#Index">Index</a></li>
+                    <li><a href="#Personal homepage">Personal homepage</a></li>
+                    <li><a href="#Public homepage">Public homepage</a></li> 
+                    <li><a href="#Messages">Messages</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-3">
+                <form>
+                    <input type=text placeholder="search"  class="form-control" style="margin-bottom:5px;margin-top:10px";>
+                </form>
+            </div>
+         </div>
+       </div>
+    </div>
+      
+    <div class="container" style="margin-top:80px;">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="col-md-12 row" >
+              <img class="col-md-8" src="images/face.jpg" />
+              <div class="col-md-4" style="padding-top:20%"><a>someone's name</a></div>
+          </div>
+            
+            <div class="col-md-12 row">
+              <p style="margin-top:20px;">name:</p></br>
+              <p>gender:</p></br>
+              <p>age:</p></br>
+              <p>phonenumber:</p></br>
+              <p>E-mail:</p></br>
+              <p>birth place:</p></br>
+              <input type="button" class="btn btn-lg btn-success" value="modify the information" style="margin-top:10px;"></br>
+          </div>
+
+        </div>
+          
+        <div class="col-md-6">
+            
+            <div class="bs-example bs-example-tabs" style="margin-top:20px;">
+            <ul id="myTab3" class="nav nav-tabs" >
+                <li class="active"><a href="#my-blogs" data-toggle="tab">my blogs</a></li>
+                <li class><a href="#blogs-of-friends" data-toggle="tab">myfriends' blogs</a></li>
+              </ul>
+            <div id="myTabcontent3" class="tab-content">
+                <div class="tab-pane active" id="my-blogs">
+                  <form>
+                    <textarea placeholder="What are you doing now?" style="width:100%;margin-top:10px;"></textarea>
+                  </form>
+                </div>
+                <div class="tab-pane" id="blogs-of-friends">
+                    
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                        friends 1
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse ">
+                                <div class="panel-body">
+                                    <ul>
+                                        <li>blog1</li>
+                                        <li>blog2</li>
+                                        <li>blog3</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                        friends 2
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse ">
+                                <div class="panel-body">
+                                    <ul>
+                                        <li>blog1</li>
+                                        <li>blog2</li>
+                                        <li>blog3</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                        friends 3
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul>
+                                        <li>blog1</li>
+                                        <li>blog2</li>
+                                        <li>blog3</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                        friends 4
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseFour" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul>
+                                        <li>blog1</li>
+                                        <li>blog2</li>
+                                        <li>blog3</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                                        friends 5
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseFive" class="panel-collapse collapse ">
+                                <div class="panel-body">
+                                    <ul>
+                                        <li>blog1</li>
+                                        <li>blog2</li>
+                                        <li>blog3</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+              </div>
+            </div>
+            
+        </div>
+          
+        <div class="col-md-3">
+          
+          
+          
+        </div>
+          
+      </div>
+    </div>
+      
+      <script>
+              $('#myTab3 a').click(function (e) {
+              e.preventDefault();
+              $(this).tab('show')
+              });
+      </script>
+      
+  </body>
+    
+     
+      <footer>
+    <p class="navbar-text navbar-fixed-bottom" style="text-align:center;">Copyright@Six Degree|<a href="#" class="navbar-link">About us</a></br>Authorized by Class 9 of Software Engineering B7</p>
+      </footer>
+      
+    
+  </html>
+      
+      
+      
+      
+    

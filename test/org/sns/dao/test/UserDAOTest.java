@@ -57,5 +57,15 @@ public class UserDAOTest {
 			System.out.println(((User) list.get(i)).getThings().size());
 		}
 	}
+	@Test
+	public void queryByName() {
+		ApplicationContext ctx = new ClassPathXmlApplicationContext(
+				"applicationContext.xml");
+		UserDAO dao = UserDAO.getFromApplicationContext(ctx);
+		List<User> list = dao.findByUsername("bq");
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i).getPhone());
+		}
+	}
 
 }

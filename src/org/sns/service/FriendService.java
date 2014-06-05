@@ -1,5 +1,7 @@
 package org.sns.service;
 
+import java.util.List;
+
 import org.sns.dao.FriendDAO;
 import org.sns.dao.WaitDAO;
 import org.sns.model.Friend;
@@ -13,6 +15,15 @@ import org.sns.model.Wait;
 public class FriendService {
 	private FriendDAO dao;
 	private WaitDAO waitDAO;
+	private UserService service;
+	
+	public UserService getService() {
+		return service;
+	}
+
+	public void setService(UserService service) {
+		this.service = service;
+	}
 
 	public FriendDAO getDao() {
 		return dao;
@@ -37,13 +48,14 @@ public class FriendService {
 	 * @return boolean
 	 */
 	public boolean isFriend(User u, User other) {
-		Friend f1 = new Friend(u, other);
-		Friend f2 = new Friend(other, u);
-		if (dao.findByExample(f1).size() > 0) {
-			return true;
-		}
-		if (dao.findByExample(f2).size() > 0) {
-			return true;
+		System.out.println("other user:  "+other.getUserId());
+		List list=service.getFriendUsers(u);
+		for(int i=0;i<list.size();i++){
+			User user=(User)list.get(i);
+			System.out.println("dangqianfriend:  "+user.getUserId());
+			if(user.getUserId().intValue()==other.getUserId().intValue()){
+				return true;
+			}
 		}
 		return false;
 	}
@@ -60,8 +72,10 @@ public class FriendService {
 			return false;
 		} else {
 			try {
+				System.out.println("向friend表中准备写数据");
 				dao.save(new Friend(u, other));
-				waitDAO.delete(new Wait(u, other));
+				//List waits=service.getWaits(u);
+				
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -78,8 +92,10 @@ public class FriendService {
 		if (!isFriend(u, other)) {
 			return false;
 		} else {
+			System.out.println("即将从friend表中删除好友关系");
 			try {
-				dao.delete(new Friend(u, other));
+				Friend friend=new Friend(u,other);
+				dao.delete(friend);
 				return true;
 			} catch (Exception e) {
 				return false;

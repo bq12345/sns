@@ -4,7 +4,77 @@
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.i18n.encoding" value="utf-8" />
-	<package name="default"  namespace="/"  extends="struts-default">
+	<package name="json" extends="json-default" namespace="/json">
+		<!-- 获取新鲜事 -->
+		<action name="getThing" class="org.sns.action.GetThingAction">
+
+			<result name="success" type="json">
+
+				<!-- 默认将会序列所有有返回值的getter方法的值，而无论该方法是否有对应属性 -->
+				<param name="includeProperties">result\[\d+\]\.thingId,result\[\d+\]\.content,result\[\d+\]\.time,result\[\d+\]\.type,result\[\d+\]\.commentNum</param>
+				<!-- 指定是否序列化空的属性 -->
+				<param name="excludeNullProperties">true</param>
+				<!-- 这里指定将序列化dataMap中的那些属性 -->
+				<!-- <param name="includeProperties"> userList.* </param> -->
+				<!-- 这里指定将要从dataMap中排除那些属性，这些排除的属性将不被序列化，一半不与上边的参数配置同时出现 -->
+				<!-- <param name="excludeProperties"> SUCCESS </param> -->
+			</result>
+			<result name="login">/login.html</result>
+		</action>
+		<!-- 获取好友新鲜事 -->
+		<action name="getFriendsThings" class="org.sns.action.GetFriendsThingsAction">
+			<result name="success" type="json">
+				<param name="includeProperties">result\[\d+\]\.thingId,result\[\d+\]\.sender,result\[\d+\]\.content,result\[\d+\]\.time,result\[\d+\]\.commentNum,result\[\d+\]\.shareNum</param>
+				<param name="excludeNullProperties">false</param>
+			</result>
+			<result name="login">/login.html</result>
+		</action>
+		<!-- 获取好友列表 -->
+		<action name="getFriend" class="org.sns.action.GetFriendListAction">
+			<result type="json">
+				<param name="includeProperties">result\[\d+\]\.userId,result\[\d+\]\.username,result\[\d+\]\.state</param>
+			</result>
+			<result name="login">/login.html</result>
+		</action>
+
+<!-- 获取消息列表 -->
+			<action name="getMessages" class="org.sns.action.GetMessagesAction">
+			<result type="json">
+				<param name="includeProperties">result\[\d+\]\.content,result\[\d+\]\.msgId,
+				result\[\d+\]\.sender,result\[\d+\]\.time,result\[\d+\]\.read
+				</param>
+			</result>
+			<result name="login">/login.html</result>
+		</action>
+
+<!-- 获取自己的信息 -->
+
+		<action name="getInfo" class="org.sns.action.GetInfoAction">
+			<result type="json">
+					<param name="includeProperties">result\[\d+\]\.qq,result\[\d+\]\.phone,result\[\d+\]\.username,result\[\d+\]\.userId,result\[\d+\]\.email</param>
+			</result>
+			<result name="login">/login.html</result>
+		</action>
+
+
+<action name="publicUser" class="org.sns.action.UserAction"
+	method="publicUser">
+			<result type="json">
+					<param name="includeProperties">result\[\d+\]\.qq,result\[\d+\]\.phone,result\[\d+\]\.username,result\[\d+\]\.userId,result\[\d+\]\.email</param>
+			</result>
+			<result name="login">/login.html</result>
+		</action>
+
+
+
+
+
+
+	</package>
+
+
+
+	<package name="default" namespace="/" extends="struts-default">
 
 		<default-action-ref name="index" />
 
@@ -17,28 +87,105 @@
 		</global-exception-mappings>
 
 		<action name="index">
-			<result>/index.jsp</result>
+			<result>/index.html</result>
 		</action>
 
 		<action name="#">
 			<result>/index.jsp</result>
 		</action>
-		
-		<action name="addUser" class="org.sns.action.UserAction" >
+
+		<action name="addUser" class="org.sns.action.UserAction">
 			<result name="success">/success.jsp</result>
 			<result name="error">/error.jsp</result>
 			<interceptor-ref name="fileUpload">
-                <param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg</param>
-                <param name="maximumSize">1025956</param>
-            </interceptor-ref>
-            <interceptor-ref name="defaultStack" />
+				<param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg</param>
+				<param name="maximumSize">1025956</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+		</action>
+		<!-- 修改用户信息 -->
+		<action name="modifyInfo" class="org.sns.action.ModifyInformationAction">
+			<result name="success">/person.html</result>
+			<result name="none">/person.html</result>
+			<result name="login">/login.html</result>
+			<result name="error">/error.jsp</result>
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg</param>
+				<param name="maximumSize">1025956</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+		</action>
+		<!-- 注册 -->
+		<action name="signup" class="org.sns.action.SignupAction">
+			<result name="success">/index.html</result>
+			<result name="none">/signup.html</result>
+			<result name="error">/error.jsp</result>
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg</param>
+				<param name="maximumSize">1025956</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+		</action>
+		<!--登陆 -->
+		<action name="login" class="org.sns.action.LoginAction">
+			<result name="success">/index.html</result>
+			<result name="login">/login.html</result>
+		</action>
+		<!-- 发布新鲜事 -->
+		<action name="addThing" class="org.sns.action.AddThingAction">
+			<result name="success">/index.html</result>
+			<result name="login">/login.html</result>
+		</action>
+		<!-- 请求添加好友 -->
+			<action name="wantFriend" class="org.sns.action.WantFriendAction">
+			<result name="success">/index.html</result>
+			<result name="login">/login.html</result>
+			<result name="isFriend">/index.html</result>
 		</action>
 		
-		<action name="getImage" class="org.sns.action.ImageAction" >
+		<!-- 点击同意，添加好友 -->
+		<action name="agreeFriend" class="org.sns.action.AgreeFriendAction">
+			<result name="success">/index.html</result>
+			<result name="login">/login.html</result>
+			<result name="isFriend">/index.html</result>
+		</action>
+		<!-- 删除好友 -->
+			<action name="deleteFriend" class="org.sns.action.DeleteFriendAction">
+			<result name="success">/friend.html</result>
+			<result name="login">/login.html</result>
+			<result name="none">/friend.html</result>
+		</action>
+		<!-- 留言 -->
+			<action name="sendMessage" class="org.sns.action.SendMessageAction">
+			<result name="success">/public.html</result>
+			<result name="login">/login.html</result>
+		</action>
+		<!-- 添加评论 -->
+		
+		<action name="addComment" class="org.sns.action.AddCommentAction">
+			<result name="success">/index.html</result>
+			<result name="login">/login.html</result>
+		</action>
+		
+		<action name="getUser" class="org.sns.action.UserAction"
+			method="exist">
+			<result name="success">/index.html</result>
+		</action>
+
+
+		<action name="getImage" class="org.sns.action.ImageAction">
 			<result name="success" type="stream">
 				<param name="contentType">image/png</param>
 				<param name="bufferSize">4096</param>
-				<param name="inputName">image</param>  
+				<param name="inputName">image</param>
+			</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="getThingImage" class="org.sns.action.ThingImageAction">
+			<result name="success" type="stream">
+				<param name="contentType">image/png</param>
+				<param name="bufferSize">4096</param>
+				<param name="inputName">image</param>
 			</result>
 			<result name="error">/error.jsp</result>
 		</action>

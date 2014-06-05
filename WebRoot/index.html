@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="B7">
+    <title>index</title>
+    <link href="dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="dist/css/style.css" rel="stylesheet" type="text/css">
+    <script src="dist/js/jquery-1.11.1.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        textarea {
+            resize: vertical;
+        }
+        .comment-content{
+            border-radius: 5px;
+            background: #fff;
+            border: #ddd solid 1px;  
+        }
+        .comment-content:hover{
+            background: #aaa;
+            border: #444 solid 1px; 
+        }
+    </style>
+</head>
+<body style="background: #E9EDF0">
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background-color:#227DC5;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"><img src="images/logo.jpg"></div>
+            <div class="col-md-6" >
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav top-nav">
+                        <li><a href="index.html">Index</a></li>
+                        <li><a href="person.html">Personal Page</a></li>
+                        <li><a href="public.html">Public Page</a></li>
+                        <li><a href="friend.html">Friend</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <form>
+                    <input type=text id="search" placeholder="search" class="form-control"
+                           style="margin-bottom:5px;margin-top:10px">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="margin-top:80px;">
+    <div class="container row">
+        <aside class="col-lg-3" style="padding-left: 20px;">
+            <div class="col-md-12 row">
+                <img class="col-md-8" src="" id="face-image" style="min-height: 125px;min-width: 155px;"/>
+
+                <div class="col-md-4" style="padding-top:20%"><h3 class="text-info" id="face-name"></h3></div>
+            </div>
+            <input type="button" class="btn btn-default btn-lg col-md-11 " value="Fresh news" style="margin-top:10px;background: #E9EDF0">
+            <input type="button" class="btn btn-default btn-lg col-md-11" value="Messages" style="margin-top:10px;background: #E9EDF0">
+            <input type="button" class="btn btn-default btn-lg col-md-11" value="Friends" style="margin-top:10px;background: #E9EDF0">
+            <input type="button" class="btn btn-default btn-lg col-md-11" value="Blog" style="margin-top:10px;background: #E9EDF0">
+            <input type="button" class="btn btn-default btn-lg col-md-11" value="Photos" style="margin-top:10px;background: #E9EDF0">
+        </aside>
+        <div class="col-lg-6" style="border: 1px solid #dcdcdc">
+            <div class="bs-example bs-example-tabs" style="margin-top:20px;z-index:1000;position:relative;">
+                <ul id="publishTab" class="nav nav-tabs">
+                    <li class="active"><a href="#contribute" data-toggle="tab">contribute new states</a></li>
+                    <li class><a href="#write" data-toggle="tab">write blogs</a></li>
+                    <li class><a href="#upload" data-toggle="tab">upload photos</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="contribute">
+                        <p>
+
+                        <form method="post" enctype="multipart/form-data" action="addThing?type=0">
+                            <textarea class="publish" placeholder="You can contribute new states here ." name="content"
+                                      style="width:100%;margin-top:10px;"></textarea>
+
+                            <div class="publish-hide"
+                                 style="min-height: 35px;background:#E9EDF0 ;opacity: 0;">
+                                <div style="position:relative;">
+                                    <button class="btn btn-default col-lg-3">Find a photo</button>
+                                    <input type="file" name="image" style="position:absolute; left:0; top:0;opacity:0;"/>
+                                    <input name="type" type="hidden" value="0">
+                                </div>
+                                <input type="button" class="col-lg-2 col-lg-offset-1 btn btn-default cancel-publish" value="Cancel">
+                                <input type="submit" value="Submit" class="col-lg-2 col-lg-offset-4 btn btn-default">
+                            </div>
+                        </form>
+                        </p>
+                    </div>
+                    <div class="tab-pane" id="write">
+                        <p>
+
+                        <form method="post" enctype="multipart/form-data" action="addThing?type=1">
+                            <textarea class="publish" placeholder="You can write a blog here ." name="content"
+                                      style="width:100%;margin-top:10px;"></textarea>
+
+                            <div class="publish-hide"
+                                 style="min-height: 35px;background: #E9EDF0;opacity: 0;">
+                                <div style="position:relative;">
+                                    <button class="btn btn-default col-lg-3">Find a photo</button>
+                                    <input type="file" name="image" style="position:absolute; left:0; top:0;opacity:0;"/>
+                                    <input name="type" type="hidden" value="1">
+                                </div>
+                                <input type="button" class="col-lg-2 col-lg-offset-1 btn btn-default cancel-publish" value="Cancel">
+                                <input type="submit" value="Submit" class="col-lg-2 col-lg-offset-4 btn btn-default">
+                            </div>
+                        </form>
+                        </p>
+                    </div>
+                    <div class="tab-pane" id="upload">
+                        <p>
+
+                        <form method="post" enctype="multipart/form-data" action="addThing?type=2">
+                            <textarea class="publish" placeholder="You can upload photos here ." name="content"
+                                      style="width:100%;margin-top:10px;"></textarea>
+
+                            <div class="publish-hide"
+                                 style="min-height: 35px;background: #E9EDF0;opacity: 0;">
+                                <div style="position:relative;">
+                                    <button class="btn btn-default col-lg-3">Find a photo</button>
+                                    <input type="file"  name="image" style="position:absolute; left:0; top:0;opacity:0;"/>
+                                </div>
+                                <input name="type" type="hidden" value="2">
+                                <input type="button" class="col-lg-2 col-lg-offset-1 btn btn-default cancel-publish" value="Cancel">
+                                <input type="submit" value="Submit" class="col-lg-2 col-lg-offset-4 btn btn-default">
+                            </div>
+                        </form>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bs-example bs-example-tabs" style="margin-top:10px;">
+                <ul id="typeTab" class="nav nav-tabs">
+                    <li class="active"><a href="#news" title="news" data-toggle="tab">fresh news</a></li>
+                    <li class><a href="#blogs" title="blogs" data-toggle="tab">blogs</a></li>
+                    <li class><a href="#photos" title="photos" data-toggle="tab">photos</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="news">
+
+                    </div>
+                    <div class="tab-pane" id="blogs">
+
+                    </div>
+                    <div class="tab-pane" id="photos">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2   col-lg-offset-1">
+            <!--friends list-->
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion"
+                               href="#collapseOne">
+                                All friends
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse ">
+                        <div class="panel-body">
+                            <ul id="friends" class="list-unstyled">
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion"
+                               href="#collapseTwo">
+                                Online friends
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse ">
+                        <div class="panel-body">
+                            <ul>
+                                <li>Tom</li>
+                                <li>Jack</li>
+                                <li>Sherly</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--friends lists-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#publishTab a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+    var get = {
+        person: function () {
+            console.log('get person');
+            $.ajax({
+                url: "json/getInfo",
+                type: "get",
+                dataType: "json",
+                success: function (data, status) {
+                	console.log(data.result);
+                    $('.person').prop({"src": "getImage?id="+data.result[0].userId});
+                    $('#face-image').prop({"src": "getImage?id="+data.result[0].userId});
+                    $('#face-name').text(data.result[0].username);
+                }
+            });
+        },
+        news: function () {
+            console.log('get news');
+            $.ajax({
+                url: "json/getFriendsThings?type=0",
+                type: "get",
+                dataType: "json",
+
+                success: function (data, status) {
+                    $("#news").html('');
+                    $.each(
+                            data.result,
+                            function (i, item) {
+                                $('<article style="background: #fff;border-radius: 5px"><h3><a style="cursor: pointer">'
+                                        + item["sender"] + '</a>:'
+                                        + item["content"] + '</h3><img src="getThingImage?id='
+                                        + item["thingId"] + '"style="max-width:100%"><span>'
+                                        + item["time"] + '</span><span class="col-lg-offset-8">comments:'
+                                        + item["commentNum"] + '</span><div class="comments" id="comment'
+                                        + item["thingId"]+'"></div><span class="row"><img class="person" src="" style="padding: 0;max-height:30px;">'
+                                        +'<textarea class="comment-input" id="comment'+item["thingId"]+'-input" style="height: 30px;width:90%"></textarea></span><div class="row comment-btns" style="padding-left: 40px;opacity: 0"><button data-input="'
+                                        +item["thingId"]+'" class="col-lg-3 btn btn-default submit-comments" id="submit-comment-'
+                                        +item["thingId"]+'">Submit</button><button class="col-lg-3 col-lg-offset-1 btn btn-default cancel-comments" id="cancle-comment-'
+                                        +item["thingId"]+'">Cancel</button>'+'</div></article>')
+                                        .appendTo('#news');
+                                //Add comments to each thing
+                                setTimeout(get.comments("comment"+item["thingId"]),500);
+                            });
+
+                }
+            });
+        },
+        blogs: function () {
+            console.log('get blogs');
+            $.ajax({
+                url: "json/things.txt",
+                type: "get",
+                dataType: "json",
+
+                success: function (data, status) {
+
+                    $.each(
+                            data,
+                            function (i, item) {
+                                $('<article><h3><a style="cursor: pointer">'
+                                        + item["sender"] + '</a>:'
+                                        + item["content"] + '</h3><img src="'
+                                        + item["image"] + '"style="max-width:550px;"><span>'
+                                        + item["time"] + '</span><span class="col-lg-offset-8">comments:'
+                                        + item["comment_num"] + '</span></article>').appendTo('#blogs');
+                                
+                            });
+
+                }
+            });
+        },
+        photos: function (e) {
+            console.log('get photos');
+            $.ajax({
+                url: "json/things.txt",
+                type: "get",
+                dataType: "json",
+
+                success: function (data, status) {
+
+                    $.each(
+                            data,
+                            function (i, item) {
+                                $('<article><h3><a style="cursor: pointer">'
+                                        + item["sender"] + '</a>:'
+                                        + item["content"] + '</h3><img src="'
+                                        + item["image"] + '"style="max-width:550px;"><span>'
+                                        + item["time"] + '</span><span class="col-lg-offset-8">comments:'
+                                        + item["comment_num"] + '</span></article>').appendTo('#photos');
+                            });
+
+                }
+            });
+        },
+        friends: function () {
+            console.log('get friends');
+            $.ajax({
+                url: "json/getFriend",
+                type: "get",
+                dataType: "json",
+                success: function (data, status) {
+                    $.each(
+                            data.result,
+                            function (i, item) {
+                                $('<li><a target="_blank" href="public.html?id='+item["userId"]+'">' + item["username"] + '</a></li>').appendTo('#friends');
+                            });
+
+                }
+            });
+        },
+        comments: function (id) {
+            var inputId=id;
+            console.log('get comments for thing ---'+id);
+            $.ajax({
+                url: "json/comments.json",
+                type: "get",
+                dataType: "json",
+                success: function (data, status) {
+                    $('#'+id).html('回复列表:');
+                    $.each(
+                            data,
+                            function (i, item) {
+                                $('<div class="comment-content"><p class="row"><a class="col-lg-3 h5 text-info">'
+                                        +item["sender"]+'</a><span class="col-lg-5" style="color:#333;margin-left: 5%;">'
+                                        +item["time"]+'<a class="h5 comment-replys" data-thing="'+id+'" title="'+item["sender"]+'" id="comment-reply-'+item["id"]+'" style="color:#333;padding-left: 30%">Reply</a></span></p><p><span>'+item["content"]+'</span></p></div>')
+                                        .appendTo('#'+id);
+                            });
+                }
+            });
+            //请求完成之后需要添加事件处理程序
+            $('#news').on('click','.comment-replys',function (e) {
+               console.log($(e.target).attr("data-thing").slice(7));
+               $("#comment"+($(e.target).attr("data-thing").slice(7))+"-input").html("Reply to "+ e.target.title+":");
+               e.preventDefault();
+            });
+            //提交按钮之后发布评论 再次刷新
+            //$('')
+        }
+        
+    };
+
+    $('#typeTab a').click(function (e) {
+        switch (e.target.title) {
+            case 'news':
+                get.news();
+                break;
+            case 'blogs':
+                get.blogs();
+                break;
+            case 'photos':
+                get.photos();
+                break;
+        }
+        e.preventDefault();
+        $(this).tab('show');
+    });
+    $(function () {
+        get.friends();
+        get.news();
+        get.person();
+        $('.publish').focus(function () {
+            $('.publish-hide').animate({opacity: 1, height: 40}, 'slow');
+        });
+
+        $('.cancel-publish').click(function () {
+            $('.publish-hide').animate({opacity: 0, height: 0}, 'slow');
+        });
+        $(document).on('focus','.comment-input',function () {
+            $(this).animate({height: 50}, 'slow');
+            $('.comment-btns').animate({ opacity: 1}, 'slow');
+        });
+        $(document).on('click','.submit-comments',function (e) {
+            var input=$(e.target).attr("data-input");
+            console.log($("#comment"+input+"-input").val());
+
+        });
+        $(document).on('click','.cancel-comments',function () {
+            $('.comment-input').animate({ height: 35}, 'slow');
+            $('.comment-btns').animate({ opacity: 0}, 'slow');
+        });
+
+    });
+    $('#search').keydown(function(event){
+        var key_code = event.keyCode;
+        if (key_code==13)
+        {
+            location.replace("search.html?name="+$('#search').val());
+            return false;
+        }
+
+    });
+</script>
+<footer>
+    <p style="text-align:center;">Copyright@Six Degree|<a href="about.html" target="_blank"
+                                                          class="navbar-link">About
+        us</a></br>Powered by Class 9 of Software Engineering B7</p>
+</footer>
+</body>
+
+
+
+</html>

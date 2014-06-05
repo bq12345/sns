@@ -14,7 +14,7 @@ public class SessionManager {
 	 * @return boolean
 	 */
 	public static boolean isOnLine() {
-		return null == getUser();
+		return null != getUser();
 	}
 
 	/**
@@ -30,7 +30,7 @@ public class SessionManager {
 	 * @param u
 	 */
 	public static void add(User u) {
-		ActionContext.getContext().getSession().put("user", u.getUsername());
+		ActionContext.getContext().getSession().put("user", u);
 		ActionContext.getContext().getSession().put("key", u.getUserId());
 	}
 

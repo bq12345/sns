@@ -2,9 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>sns</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
+   <welcome-file>login.html</welcome-file>
   </welcome-file-list>
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -21,4 +19,25 @@
     <filter-name>struts2</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  <!--  -->
+  <filter>
+    <filter-name>openSessionInViewFilter</filter-name>
+    <filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+</filter>
+
+<filter-mapping>
+    <filter-name>openSessionInViewFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+  
+ 
+    <filter>
+  <filter-name>hibernateFilter</filter-name>   
+     <filter-class>  org.springframework.orm.hibernate3.support.OpenSessionInViewFilter </filter-class>   
+</filter > 
+<filter-mapping>   
+     <filter-name>hibernateFilter</filter-name>   
+     <url-pattern>/*</url-pattern>   
+</filter-mapping> 
+
 </web-app>

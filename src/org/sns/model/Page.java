@@ -32,6 +32,7 @@ public class Page implements java.io.Serializable {
 
 	/** default constructor */
 	public Page() {
+		
 	}
 
 	/** full constructor */

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="friend manage">
+    <meta name="author" content="B7">
+    <title>Friend</title>
+    <link href="dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="dist/css/style.css" rel="stylesheet" type="text/css">
+    <script src="dist/js/jquery-1.11.1.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <style type="text/css">
+
+    </style>
+</head>
+<body style="background: #E9EDF0">
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background-color:#227DC5;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"><img src="images/logo.jpg"></div>
+            <div class="col-md-6">
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav top-nav">
+                        <li><a href="index.html">Index</a></li>
+                        <li><a href="person.html">Personal Page</a></li>
+                        <li><a href="public.html">Public Page</a></li>
+                        <li><a href="friend.html">Friend</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <form>
+                    <input id="search" type=text placeholder="search" class="form-control"
+                           style="margin-bottom:5px;margin-top:10px">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="margin-top:80px;">
+    <div class="container row">
+        <aside class="col-lg-3" style="padding-left: 20px;">
+            <div class="col-md-12 row">
+                <img class="col-md-8" src="" id="face-image" style="min-height: 125px;min-width: 155px;"/>
+
+                <div class="col-md-4" style="padding-top:20%"><h3 class="text-info" id="face-name"></h3></div>
+            </div>
+            <input type="button" class="btn btn-default btn-lg col-md-11 " value="Fresh news"
+                   style="margin-top:10px;background: #E9EDF0">
+            <input type="button" class="btn btn-default btn-lg col-md-11" value="Messages"
+                   style="margin-top:10px;background: #E9EDF0">
+            <input type="button" class="btn btn-default btn-lg col-md-11" value="Friends"
+                   style="margin-top:10px;background: #E9EDF0">
+            <input type="button" class="btn btn-default btn-lg col-md-11" value="Blog"
+                   style="margin-top:10px;background: #E9EDF0">
+            <input type="button" class="btn btn-default btn-lg col-md-11" value="Photos"
+                   style="margin-top:10px;background: #E9EDF0">
+        </aside>
+        <div class="col-lg-6" id="friends">
+            <!--<div class="col-md-4">
+                <a href="#" class="thumbnail">
+                    <img data-src="holder.js/100%x120" alt="photo"
+                         style="height:120px;width:100%;display:block;">
+                </a>
+            </div>-->
+        </div>
+        <div class="col-lg-2   col-lg-offset-1">
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#publishTab a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+    var get = {
+        person: function () {
+            console.log('get person');
+            $.ajax({
+                url: "json/person.json",
+                type: "get",
+                dataType: "json",
+                success: function (data, status) {
+                    $('#face-image').prop({"src": data.image});
+                    $('#face-name').text(data.name);
+                }
+            });
+        },
+        friends: function () {
+            console.log('get friends');
+            $.ajax({
+                url: "json/friends.json",
+                type: "get",
+                dataType: "json",
+                success: function (data, status) {
+                    $.each(
+                            data,
+                            function (i, item) {
+                                $('<div class="col-lg-4" style="min-height: 120px"><a target="_blank" href="public.html?&id='
+                                        + item["id"] + '">' + item["name"] + '</a><a  class="col-lg-offset-4" style="color: #008000" href="deleteFriend?id='
+                                        +item["id"]+'">Delete</a><img src="'
+                                        +item["image"]+'"></li>').appendTo('#friends');
+                            });
+
+                }
+            });
+        }
+    };
+
+    $('#typeTab a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+    $(function () {
+        get.person();
+        get.friends();
+    });
+    $('#search').keydown(function(event){
+        var key_code = event.keyCode;
+        if (key_code==13)
+        {
+            location.replace("search.html?name="+$('#search').val());
+            return false;
+        }
+
+    });
+</script>
+<footer>
+    <p style="text-align:center;">Copyright@Six Degree|<a href="about.html" target="_blank"
+                                                          class="navbar-link">About
+        us</a></br>Powered by Class 9 of Software Engineering B7</p>
+</footer>
+</body>
+
+
+</html>

@@ -26,7 +26,7 @@ public class Message implements java.io.Serializable {
 	private String content;
 	private Timestamp time;
 	private Short read;
-
+	private String sender;
 	// Constructors
 
 	/** default constructor */
@@ -107,5 +107,13 @@ public class Message implements java.io.Serializable {
 	public void setRead(Short read) {
 		this.read = read;
 	}
+	@Column(name = "sender")
+	public String getSender() {
+		return sender;
+	}
 
+	public void setSender(String sender) {
+		this.sender = sender;
+	}
+	
 }

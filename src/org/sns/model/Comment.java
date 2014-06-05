@@ -1,6 +1,8 @@
 package org.sns.model;
 
 import java.sql.Timestamp;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -61,7 +63,7 @@ public class Comment implements java.io.Serializable {
 		this.user = user;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@JoinColumn(name = "new_id")
 	public Thing getThing() {
 		return this.thing;

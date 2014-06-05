@@ -24,23 +24,61 @@ public class UserService {
 	}
 
 	/**
+	 * 判断是否可以注册
+	 * 
+	 * @param s
+	 *            is email or phone
+	 * @return 不合法不可注册，已经存在也不可以注册
+	 */
+	public boolean canRegiste(String s) {
+		System.out.println("准备注册的手机或者邮件是" + s);
+		if (Validate.isEmail(s)) {// 如果是合法的邮件
+			if (dao.findByEmail(s).size() > 0) {// 如果已经有了
+				return false;
+			} else {
+				return true;
+			}
+		}
+		if (Validate.isPhone(s)) {// 如果是合法的手机
+
+			if (dao.findByPhone(s).size() > 0) {
+				return false;
+			} else {
+				return true;
+			}
+
+		}
+
+		return false;
+	}
+
+	/**
 	 * If the user exist
 	 * 
-	 * @param s is email or phone
-	 * @return
+	 * @param s
+	 *            is email or phone
+	 * @return user
 	 */
-	public boolean existUser(String s) {
+	public User existUser(String s) {
+		System.out.println("用户的输入是  " + s);
 		if (Validate.isEmail(s)) {
-			if (dao.findByEmail(s).size() > 0) {
-				return true;
+			System.out.println("邮件" + s);
+			if (dao.findByEmail(s).size() == 0) {
+				return null;
 			}
+			User user = dao.findByEmail(s).get(0);
+			return user;
 		}
 		if (Validate.isPhone(s)) {
-			if (dao.findByEmail(s).size() > 0) {
-				return true;
+			System.out.println("手机号" + s);
+			if (dao.findByPhone(s).size() == 0) {
+				return null;
 			}
+			User user = dao.findByPhone(s).get(0);
+			return user;
 		}
-		return false;
+
+		return null;
 	}
 
 	/**
@@ -96,10 +134,10 @@ public class UserService {
 	 * @return List<User>
 	 */
 	public List<User> getWaits(User u) {
-		List<User> users=new ArrayList<User>();
+		List<User> users = new ArrayList<User>();
 		try {
-			List<Wait> waits=new ArrayList<Wait>(u.getWaitsForReceiverId());
-			for(int i=0;i<waits.size();i++){
+			List<Wait> waits = new ArrayList<Wait>(u.getWaitsForReceiverId());
+			for (int i = 0; i < waits.size(); i++) {
 				users.add(waits.get(i).getUserBySenderId());
 			}
 			return users;
@@ -116,11 +154,12 @@ public class UserService {
 	 */
 	public List<Friend> getFriendList(User u) {
 		try {
-			List<Friend> left=new ArrayList<Friend>(u.getFriendsForUserId());
-			List<Friend> right=new ArrayList<Friend>(u.getFriendsForOtherId());
-			List<Friend> friends=new ArrayList<Friend>();
+			List<Friend> left = new ArrayList<Friend>(u.getFriendsForUserId());
+			List<Friend> right = new ArrayList<Friend>(u.getFriendsForOtherId());
+			List<Friend> friends = new ArrayList<Friend>();
 			friends.addAll(right);
 			friends.addAll(left);
+
 			return friends;
 		} catch (Exception e) {
 			return null;
@@ -139,26 +178,28 @@ public class UserService {
 			List users = new ArrayList();
 			List<Friend> list = getFriendList(u);
 			for (int i = 0; i < list.size(); i++) {
-				users.add(list.get(i).getUserByUserId());
+				users.add(list.get(i).getUserByOtherId());
 			}
+			System.out.println("users\t " + users.size());
 			return users;
 		} catch (Exception e) {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * get user's image
+	 * 
 	 * @param id
 	 * @return blob
 	 */
-	public Blob getImage(int id){
-		User u=null;
-		try{
-			u=dao.findById(id);
+	public Blob getImage(int id) {
+		User u = null;
+		try {
+			u = dao.findById(id);
 			return u.getImage();
-		}catch(Exception e){
-			return null;	
+		} catch (Exception e) {
+			return null;
 		}
 	}
 
@@ -190,5 +231,16 @@ public class UserService {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
+	/**
+	 * Find a user by example
+	 * 
+	 * @param u
+	 * @return user
+	 */
+	public User findByUser(User u) {
+		return (User) dao.findByExample(u).get(0);
+
 	}
 }
