@@ -16,7 +16,6 @@ import org.sns.util.SessionManager;
  */
 public class ModifyInformationAction implements Action {
 	private String username;
-	private short sex;
 	private String qq;
 	private UserService userService;
 
@@ -25,9 +24,13 @@ public class ModifyInformationAction implements Action {
 
 		if (SessionManager.isOnLine()) {
 			User currentUser = SessionManager.getUser();
+			System.out.println("传来的信息  " + username + "   " + qq);
 			currentUser.setUsername(username);
-			currentUser.setSex(sex);
 			currentUser.setQq(qq);
+			userService.updateUser(currentUser);
+			User newUser = userService.findByUser(currentUser);
+			SessionManager.remove();
+			SessionManager.add(newUser);
 			return Action.SUCCESS;
 		} else {
 			return Action.LOGIN;
@@ -43,20 +46,20 @@ public class ModifyInformationAction implements Action {
 		this.username = username;
 	}
 
-	public short getSex() {
-		return sex;
-	}
-
-	public void setSex(short sex) {
-		this.sex = sex;
-	}
-
 	public UserService getUserService() {
 		return userService;
 	}
 
 	public void setUserService(UserService userService) {
 		this.userService = userService;
+	}
+
+	public String getQq() {
+		return qq;
+	}
+
+	public void setQq(String qq) {
+		this.qq = qq;
 	}
 
 }

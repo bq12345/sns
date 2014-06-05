@@ -177,7 +177,8 @@
                     var data=  data.result[0];
                     pName=data['username'];
                     $('#person').html('');
-                    $('<h4 style="margin-top:30px;">name:' + '<span id="p-name" contenteditable="true">'
+                    $('<h4 style="margin-top:30px;">ID:' + '<span id="p-id" contenteditable="true">'
+                            + data['userId'] + '</span></h4><h4>name:' + '<span id="p-name" contenteditable="true">'
                             + data['username'] + '</span></h4><h4>Phone:' + '<span id="p-phone">'
                             + data["phone"] + '</span></h4><h4>E-mail:' + '<span id="p-email">'
                             + data["email"] + '</span></h4><h4>QQ:' + '<span id="p-qq" contenteditable="true">'
@@ -246,6 +247,18 @@
             console.log("get photots");
         }
     };
+    var post={
+    	person:function(){
+    	console.log( + "---" + "---" + "---" + $('#p-qq').text());
+    	$.post("modifyInfo",
+				       {username:$('#p-name').text(),qq: $('#p-qq').text()},
+				       function(data){
+				          alert("Modify Success!!!");
+				           get.person();
+				       } 
+				);
+    	}
+    }
     $('#myTab a').click(function (e) {
         switch (e.target.title) {
             case 'my-news':
@@ -268,7 +281,7 @@
         get.things();
         $('#change').click(function () {
             console.log($('#p-name').text() + "---" + "---" + "---" + $('#p-qq').text());
-            get.person();
+            post.person();
         });
         $('#leave').click(function () {
            console.log('leave click');
