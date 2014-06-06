@@ -20,7 +20,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-3">
-					<img src="images/logo.jpg">
+					<img src="images/logo.png">
 				</div>
 				<div class="col-md-6">
 					<div class="collapse navbar-collapse">
@@ -211,6 +211,7 @@
                 type: "get",
                 dataType: "json",
                 success: function (data, status) {
+                 $('#my-news').html(' ');
                     $.each(
                             data.result,
                             function (i, item) {
@@ -231,7 +232,7 @@
                 type: "get",
                 dataType: "json",
                 success: function (data, status) {
-
+					$('#messages-to-me').html(' ');
                     $.each(
                             data.result,
                             function (i, item) {

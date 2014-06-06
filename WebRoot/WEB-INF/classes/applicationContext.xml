@@ -48,8 +48,8 @@
 		</property>
 	</bean>
 	<!-- service -->
-	
-	<!-- commentService-->
+
+	<!-- commentService -->
 	<bean id="commentService" class="org.sns.service.CommentService">
 		<property name="dao" ref="commentDAO"></property>
 	</bean>
@@ -60,7 +60,7 @@
 		</property>
 	</bean>
 	<!-- messageService -->
-		<bean id="messageService" class="org.sns.service.MessageService">
+	<bean id="messageService" class="org.sns.service.MessageService">
 		<property name="dao">
 			<ref bean="messageDAO" />
 		</property>
@@ -69,7 +69,7 @@
 		</property>
 	</bean>
 	<!-- waitService -->
-		<bean id="waitService" class="org.sns.service.WaitService">
+	<bean id="waitService" class="org.sns.service.WaitService">
 		<property name="waitDAO">
 			<ref bean="waitDAO" />
 		</property>
@@ -87,7 +87,7 @@
 		</property>
 	</bean>
 	<!-- friendService -->
-		<bean id="friendService" class="org.sns.service.FriendService">
+	<bean id="friendService" class="org.sns.service.FriendService">
 		<property name="dao">
 			<ref bean="friendDAO" />
 		</property>
@@ -98,9 +98,9 @@
 			<ref bean="userService" />
 		</property>
 	</bean>
-	<!--  action-->
-	
-	
+	<!-- action -->
+
+
 	<bean id="userAction" class="org.sns.action.UserAction">
 		<property name="userService" ref="userService" />
 	</bean>
@@ -111,76 +111,80 @@
 		<property name="thingService" ref="thingService" />
 	</bean>
 	<!-- 注册处理 -->
-	
+
 	<bean id="signupAction" class="org.sns.action.SignupAction">
 		<property name="userService" ref="userService" />
 	</bean>
-	
+
 	<!-- 修改用户信息 -->
 	<bean id="modifyInfo" class="org.sns.action.ModifyInformationAction">
 		<property name="userService" ref="userService" />
 	</bean>
-		<!-- 登陆处理 -->
-		<bean id="loginAction" class="org.sns.action.LoginAction">
+	<!-- 登陆处理 -->
+	<bean id="loginAction" class="org.sns.action.LoginAction">
 		<property name="userService" ref="userService" />
 	</bean>
 	<!-- 发布新鲜事 -->
-		<bean id="addThingAction" class="org.sns.action.AddThingAction">
+	<bean id="addThingAction" class="org.sns.action.AddThingAction">
 		<property name="thingService" ref="thingService" />
 	</bean>
 	<!-- 获取新鲜事 -->
-		<bean id="getThingAction" class="org.sns.action.GetThingAction">
+	<bean id="getThingAction" class="org.sns.action.GetThingAction">
 		<property name="thingService" ref="thingService" />
 		<property name="userService" ref="userService" />
 	</bean>
-	
+
 	<!-- 获取好友新鲜事 -->
-			<bean id="getFriendThingAction" class="org.sns.action.GetFriendsThingsAction">
+	<bean id="getFriendThingAction" class="org.sns.action.GetFriendsThingsAction">
 		<property name="thingService" ref="thingService" />
 		<property name="userService" ref="userService" />
 	</bean>
-	
-	
-	<!--  获取好友列表-->
-		<bean id="getFriendListAction" class="org.sns.action.GetFriendListAction">
+
+
+	<!-- 获取好友列表 -->
+	<bean id="getFriendListAction" class="org.sns.action.GetFriendListAction">
 		<property name="userService" ref="userService" />
 	</bean>
 	<!-- 获取消息列表 -->
-		<bean id="getMessagesAction" class="org.sns.action.GetMessagesAction">
+	<bean id="getMessagesAction" class="org.sns.action.GetMessagesAction">
 		<property name="userService" ref="userService" />
 	</bean>
-	<!--  请求添加好友-->
-			<bean id="wantFriend" class="org.sns.action.WantFriendAction">
+	<!-- 请求添加好友 -->
+	<bean id="wantFriend" class="org.sns.action.WantFriendAction">
 		<property name="userService" ref="userService" />
 		<property name="friendService" ref="friendService" />
 		<property name="waitService" ref="waitService" />
 	</bean>
-	
+
 	<!-- 同意添加好友 -->
-		<bean id="agreeFriend" class="org.sns.action.AgreeFriendAction">
+	<bean id="agreeFriend" class="org.sns.action.AgreeFriendAction">
 		<property name="userService" ref="userService" />
 		<property name="friendService" ref="friendService" />
-		
+
 	</bean>
 	<!-- 删除好友 -->
-		<bean id="deleteFriend" class="org.sns.action.DeleteFriendAction">
+	<bean id="deleteFriend" class="org.sns.action.DeleteFriendAction">
 		<property name="userService" ref="userService" />
 		<property name="friendService" ref="friendService" />
 	</bean>
 	<!-- 留言 -->
-			<bean id="sendMessage" class="org.sns.action.SendMessageAction">
+	<bean id="sendMessage" class="org.sns.action.SendMessageAction">
 		<property name="userService" ref="userService" />
 		<property name="messageService" ref="messageService" />
 	</bean>
 	<!-- 添加评论 -->
-	
-		<bean id="addComment" class="org.sns.action.AddCommentAction">
+
+	<bean id="addComment" class="org.sns.action.AddCommentAction">
 		<property name="thingService" ref="thingService" />
 		<property name="commentService" ref="commentService" />
 	</bean>
-	
-	<!--  javaBean-->
-	
-	
-	
+	<!-- 搜索用户 -->
+	<bean id="search" class="org.sns.action.SearchAction">
+		<property name="userService" ref="userService" />
+	</bean>
+
+	<!-- javaBean -->
+
+
+
 </beans>

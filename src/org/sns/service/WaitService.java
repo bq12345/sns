@@ -63,4 +63,20 @@ public class WaitService {
 			return false;
 		}
 	}
+
+	/**
+	 * If exist in wait return true
+	 * 
+	 * @param u
+	 * @param other
+	 * @return
+	 */
+	public boolean isWaited(User u, User other) {
+		try {
+			System.out.println("isWaited:  "+ waitDAO.findByExample(new Wait(u, other)).size() );
+			return waitDAO.findByExample(new Wait(u, other)).size() > 0;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 }

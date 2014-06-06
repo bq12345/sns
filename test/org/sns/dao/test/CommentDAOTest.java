@@ -46,5 +46,18 @@ public class CommentDAOTest {
 			System.out.println(((Comment) list.get(i)).getContent());
 		}
 	}
+	@Test
+	public void getComments() {
+		ApplicationContext ctx = new ClassPathXmlApplicationContext(
+				"applicationContext.xml");
+		CommentDAO dao = CommentDAO.getFromApplicationContext(ctx);
+		ThingDAO tdao = ThingDAO.getFromApplicationContext(ctx);
+		Comment comment=new Comment();
+		Thing t=tdao.findById(3);
+		List list =dao.findByProperty("thing", t);
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(((Comment) list.get(i)).getContent());
+		}
+	}
 
 }

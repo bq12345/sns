@@ -32,20 +32,6 @@ public class CommentService {
 			return false;
 		}
 	}
-	/**
-	 * get a comment
-	 * @param id
-	 * @return
-	 */
-	public Comment getComment(int id){
-		Comment comment=null;
-		try {
-			comment=dao.findById(id);
-			return comment;
-		} catch (Exception e) {
-			return null;
-		}
-	}
 	/**get a things comments
 	 * @param t
 	 * @return list

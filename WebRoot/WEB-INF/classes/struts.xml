@@ -29,6 +29,22 @@
 			</result>
 			<result name="login">/login.html</result>
 		</action>
+		<!-- 搜索用户 -->
+		<action name="search" class="org.sns.action.SearchAction">
+			<result type="json">
+				<param name="includeProperties">result\[\d+\]\.userId,result\[\d+\]\.username</param>
+			</result>
+			<result name="login">/login.html</result>
+		</action>
+		
+		<!-- 获得评论 -->
+		<action name="getComments" class="org.sns.action.GetCommentsAction">
+			<result type="json">
+				<param name="includeProperties">result\[\d+\]\.time,result\[\d+\]\.sender,result\[\d+\]\.content,result\[\d+\]\.commentId</param>
+			</result>
+			<result name="login">/login.html</result>
+		</action>
+		
 		<!-- 获取好友列表 -->
 		<action name="getFriend" class="org.sns.action.GetFriendListAction">
 			<result type="json">
@@ -36,31 +52,39 @@
 			</result>
 			<result name="login">/login.html</result>
 		</action>
+		
+		<!-- 获取等待好友列表 -->
+		<action name="getWant" class="org.sns.action.GetFriendListAction">
+			<result type="json">
+				<param name="includeProperties">result\[\d+\]\.userId,result\[\d+\]\.username,result\[\d+\]\.state</param>
+			</result>
+			<result name="login">/login.html</result>
+		</action>
 
-<!-- 获取消息列表 -->
-			<action name="getMessages" class="org.sns.action.GetMessagesAction">
+		<!-- 获取消息列表 -->
+		<action name="getMessages" class="org.sns.action.GetMessagesAction">
 			<result type="json">
 				<param name="includeProperties">result\[\d+\]\.content,result\[\d+\]\.msgId,
-				result\[\d+\]\.sender,result\[\d+\]\.time,result\[\d+\]\.read
+					result\[\d+\]\.sender,result\[\d+\]\.time,result\[\d+\]\.read
 				</param>
 			</result>
 			<result name="login">/login.html</result>
 		</action>
 
-<!-- 获取自己的信息 -->
+		<!-- 获取自己的信息 -->
 
 		<action name="getInfo" class="org.sns.action.GetInfoAction">
 			<result type="json">
-					<param name="includeProperties">result\[\d+\]\.qq,result\[\d+\]\.phone,result\[\d+\]\.username,result\[\d+\]\.userId,result\[\d+\]\.email</param>
+				<param name="includeProperties">result\[\d+\]\.qq,result\[\d+\]\.phone,result\[\d+\]\.username,result\[\d+\]\.userId,result\[\d+\]\.email</param>
 			</result>
 			<result name="login">/login.html</result>
 		</action>
 
 
-<action name="publicUser" class="org.sns.action.UserAction"
-	method="publicUser">
+		<action name="publicUser" class="org.sns.action.UserAction"
+			method="publicUser">
 			<result type="json">
-					<param name="includeProperties">result\[\d+\]\.qq,result\[\d+\]\.phone,result\[\d+\]\.username,result\[\d+\]\.userId,result\[\d+\]\.email</param>
+				<param name="includeProperties">result\[\d+\]\.qq,result\[\d+\]\.phone,result\[\d+\]\.username,result\[\d+\]\.userId,result\[\d+\]\.email</param>
 			</result>
 			<result name="login">/login.html</result>
 		</action>
@@ -137,12 +161,12 @@
 			<result name="login">/login.html</result>
 		</action>
 		<!-- 请求添加好友 -->
-			<action name="wantFriend" class="org.sns.action.WantFriendAction">
+		<action name="wantFriend" class="org.sns.action.WantFriendAction">
 			<result name="success">/index.html</result>
 			<result name="login">/login.html</result>
 			<result name="isFriend">/index.html</result>
 		</action>
-		
+
 		<!-- 点击同意，添加好友 -->
 		<action name="agreeFriend" class="org.sns.action.AgreeFriendAction">
 			<result name="success">/index.html</result>
@@ -150,23 +174,23 @@
 			<result name="isFriend">/index.html</result>
 		</action>
 		<!-- 删除好友 -->
-			<action name="deleteFriend" class="org.sns.action.DeleteFriendAction">
+		<action name="deleteFriend" class="org.sns.action.DeleteFriendAction">
 			<result name="success">/friend.html</result>
 			<result name="login">/login.html</result>
 			<result name="none">/friend.html</result>
 		</action>
 		<!-- 留言 -->
-			<action name="sendMessage" class="org.sns.action.SendMessageAction">
+		<action name="sendMessage" class="org.sns.action.SendMessageAction">
 			<result name="success">/public.html</result>
 			<result name="login">/login.html</result>
 		</action>
 		<!-- 添加评论 -->
-		
+
 		<action name="addComment" class="org.sns.action.AddCommentAction">
 			<result name="success">/index.html</result>
 			<result name="login">/login.html</result>
 		</action>
-		
+
 		<action name="getUser" class="org.sns.action.UserAction"
 			method="exist">
 			<result name="success">/index.html</result>
@@ -181,6 +205,7 @@
 			</result>
 			<result name="error">/error.jsp</result>
 		</action>
+		
 		<action name="getThingImage" class="org.sns.action.ThingImageAction">
 			<result name="success" type="stream">
 				<param name="contentType">image/png</param>
@@ -189,5 +214,11 @@
 			</result>
 			<result name="error">/error.jsp</result>
 		</action>
+		
+		<action name="logout" class="org.sns.action.LogoutAction">
+			<result name="success">/login.html</result>
+		</action>
+		
+		
 	</package>
 </struts>    

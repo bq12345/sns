@@ -243,4 +243,15 @@ public class UserService {
 		return (User) dao.findByExample(u).get(0);
 
 	}
+
+	/**
+	 * Find a user by name
+	 * 
+	 * @param name
+	 * @return users' list
+	 */
+	public List<User> findByName(String name) {
+		return dao.findByUsername(name);
+
+	}
 }

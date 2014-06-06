@@ -26,7 +26,7 @@ public class Comment implements java.io.Serializable {
 	private Thing thing;
 	private String content;
 	private Timestamp time;
-
+	private String sender;
 	// Constructors
 
 	/** default constructor */
@@ -90,5 +90,14 @@ public class Comment implements java.io.Serializable {
 	public void setTime(Timestamp time) {
 		this.time = time;
 	}
+	@Column(name = "sender")
+	public String getSender() {
+		return sender;
+	}
 
+	public void setSender(String sender) {
+		this.sender = sender;
+	}
+	
+	
 }

@@ -84,6 +84,7 @@ public class CommentDAO extends HibernateDaoSupport {
 			String queryString = "from Comment as model where model."
 					+ propertyName + "= ?";
 			return getHibernateTemplate().find(queryString, value);
+			
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);
 			throw re;

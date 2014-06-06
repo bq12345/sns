@@ -27,8 +27,6 @@ public class LoginAction  implements Action{
 				System.out.println("密码错误");
 				return Action.LOGIN;
 			}
-
-			
 			
 		}
 		System.out.println("没有该用户 "+input);
